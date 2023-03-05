@@ -49,7 +49,12 @@ blocks.forEach(block => {
     });
     block.addEventListener('contextmenu', (e) => {
         e.preventDefault();
-        if (e.button !== 2 || flagCounter < 1) return;
+        if (e.button !== 2 || flagCounter < 1 || isDead || e.target.classList.contains('active') 
+        || e.target.classList.contains('one-bomb')  || e.target.classList.contains('two-bomb')
+        || e.target.classList.contains('three-bomb')  || e.target.classList.contains('four-bomb')
+        || e.target.classList.contains('five-bomb')  || e.target.classList.contains('six-bomb')
+        || e.target.classList.contains('seven-bomb')  || e.target.classList.contains('eight-bomb')
+        ) return;
         if(block.classList.contains('flag')){
             block.classList.add('question');
             block.classList.remove('flag');
