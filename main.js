@@ -22,7 +22,7 @@ document.addEventListener('click', (e) => {
 });
 blocks.forEach(block => {
     block.addEventListener('mousedown', (e)=>{
-        if(e.button == 0){
+        if(e.button == 0 && !isDead){
             document.querySelector('.smileImg').setAttribute('src', 'icons/scared.png');
         }
     });
