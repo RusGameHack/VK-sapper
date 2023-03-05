@@ -12,6 +12,13 @@ document.querySelector('.smile').addEventListener('click', ()=>{
     flagCounter = 40;
     document.querySelector('.couner_2').setAttribute('src', 'icons/timer_4.png');
     document.querySelector('.couner_3').setAttribute('src', 'icons/timer_0.png');
+    blocks = document.querySelectorAll('.block'),
+    isDead = false;
+    refreshIntervalId;
+});
+document.addEventListener('click', (e) => {
+    let target = e.target;
+    if(!isDead){document.querySelector('.smileImg').setAttribute('src', 'icons/smile.png');}
 });
 blocks.forEach(block => {
     block.addEventListener('mousedown', (e)=>{
@@ -19,15 +26,13 @@ blocks.forEach(block => {
             document.querySelector('.smileImg').setAttribute('src', 'icons/scared.png');
         }
     });
-    document.addEventListener('mouseup', (e) => {
-        let target = e.target;
-        document.querySelector('.smileImg').setAttribute('src', 'icons/smile.png');
-    });
+    
     block.addEventListener('mouseup', (e)=>{
         e.stopPropagation()
         let target = e.target;
         console.log(target)
         if(e.button === 0 && !target.classList.contains('flag') && !target.classList.contains('question')){
+            console.log('Прошли')
             if(document.querySelectorAll('.invise-bomb').length === 0){
                 document.querySelector('.smileImg').setAttribute('src', 'icons/smile.png');
                 firstPoint(block);

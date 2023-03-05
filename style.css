@@ -102,3 +102,8 @@
 .question{
     background: url('icons/question.png') center/cover no-repeat;
 }
+@media(max-width: 505px){
+    .container {
+        width: 300px;
+    }
+}
