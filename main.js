@@ -19,32 +19,28 @@ blocks.forEach(block => {
             document.querySelector('.smileImg').setAttribute('src', '/icons/scared.png');
         }
     });
-    block.addEventListener('mouseup', (e) => {
-        e.stopPropagation();
-        const target = e.target;
-        console.log(target);
-        const isLeftClick = e.button === 0;
-        const hasFlagClass = target.classList.contains('flag');
-        const hasQuestionClass = target.classList.contains('question');
-        if (!isLeftClick || hasFlagClass || hasQuestionClass) {
-            return;
-        }
-        const inviseBombs = document.querySelectorAll('.invise-bomb');
-        if (inviseBombs.length === 0) {
-            document.querySelector('.smileImg').setAttribute('src', '/icons/smile.png');
-            firstPoint(block);
-            timer();
-            return;
-        }
-        if (isDead) {
-            return;
-        }
-        if (block.classList.contains('invise-bomb')) {
-            dead(block);
-            return;
-        }
+    document.addEventListener('mouseup', (e) => {
+        let target = e.target;
         document.querySelector('.smileImg').setAttribute('src', '/icons/smile.png');
-        openBlocks(block);
+    });
+    block.addEventListener('mouseup', (e)=>{
+        e.stopPropagation()
+        let target = e.target;
+        console.log(target)
+        if(e.button === 0 && !target.classList.contains('flag') && !target.classList.contains('question')){
+            if(document.querySelectorAll('.invise-bomb').length === 0){
+                document.querySelector('.smileImg').setAttribute('src', '/icons/smile.png');
+                firstPoint(block);
+                timer();
+            } else if(!isDead) {
+                if(block.classList.contains('invise-bomb')){
+                    dead(block);
+                } else {
+                    document.querySelector('.smileImg').setAttribute('src', '/icons/smile.png');
+                    openBlocks(block);
+                }
+            }
+        }
     });
     block.addEventListener('contextmenu', (e) => {
         e.preventDefault();
@@ -160,7 +156,7 @@ const openBlocks = (block)=>{
                 ++newBlockNumber;
             }            
             let timeBlockNumber = newBlockNumber;
-            while (timeBlockNumber < 15 && !lines[lineNumber].querySelectorAll('.block')[timeBlockNumber].classList.contains('invise-bomb')) {
+            while (timeBlockNumber < 16 && !lines[lineNumber].querySelectorAll('.block')[timeBlockNumber].classList.contains('invise-bomb')) {
                 checkedBomb(lines, lineNumber, timeBlockNumber);
                 if(timeBlockNumber < 14){
                     checkedBomb(lines, lineNumber, timeBlockNumber+1);
@@ -212,7 +208,7 @@ const openBlocks = (block)=>{
     }
     function leftDown(lineNumber, blockNumber) {
         let newBlockNumber = blockNumber;
-        while (lineNumber < 15) {
+        while (lineNumber < 16) {
             if(lines[lineNumber].querySelectorAll('.block')[newBlockNumber].classList.contains('invise-bomb')) {
                 ++newBlockNumber;
             }            
@@ -268,7 +264,7 @@ const openFreeBlocks = (block) => {
                 newBlockNumber++;
             }
             let timeBlockNumber = newBlockNumber;
-            while (timeBlockNumber < 15 && !lines[lineNumber].querySelectorAll('.block')[timeBlockNumber].classList.contains('invise-bomb')) {
+            while (timeBlockNumber < 16 && !lines[lineNumber].querySelectorAll('.block')[timeBlockNumber].classList.contains('invise-bomb')) {
                 checkedBomb(lines, lineNumber, timeBlockNumber);
                 timeBlockNumber++;
             }
@@ -277,12 +273,12 @@ const openFreeBlocks = (block) => {
     }
     function rightDown(lineNumber, blockNumber) {
         let newBlockNumber = blockNumber;
-        while (lineNumber < 15) {
+        while (lineNumber < 16) {
             while (lines[lineNumber].querySelectorAll('.block')[newBlockNumber].classList.contains('invise-bomb')) {
                 newBlockNumber++;
             }
             let timeBlockNumber = newBlockNumber;
-            while (timeBlockNumber < 15 && !lines[lineNumber].querySelectorAll('.block')[timeBlockNumber].classList.contains('invise-bomb')) {
+            while (timeBlockNumber < 16 && !lines[lineNumber].querySelectorAll('.block')[timeBlockNumber].classList.contains('invise-bomb')) {
                 checkedBomb(lines, lineNumber, timeBlockNumber);
                 timeBlockNumber++;
             }
