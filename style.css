@@ -104,6 +104,29 @@
 }
 @media(max-width: 505px){
     .container {
-        width: 300px;
+        width: 310px;
+    }
+    .block {
+        width: 18px;
+        height: 18px;
+    }
+    .background-down {
+        height: 300px;
+        padding: 6px 8px 0px 11px;
+    }
+    .background-up {
+        background: center/cover no-repeat url(icons/backgroundUp.png);
+        padding: 12px 24px 7px;
+        height: 34.5px;
+    }
+    .timer img, .counter img {
+        height: 25px;
+    }
+    .up-block {
+        margin-bottom: 0px;
+    }
+    .smile img {
+        height: 28px;
+        width: 28px;
     }
 }
