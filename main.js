@@ -4,39 +4,44 @@ const quantity = 255;//Количество блоков на карте
 let flagCounter = 40;
 var refreshIntervalId;
 document.querySelector('.smile').addEventListener('click', ()=>{
-    document.querySelector('.smileImg').setAttribute('src', '/icons/smile.png');
+    document.querySelector('.smileImg').setAttribute('src', 'icons/smile.png');
     blocks.forEach(block => {
         block.className = 'block not-active';
     });
     refreshTimer();
     flagCounter = 40;
-    document.querySelector('.couner_2').setAttribute('src', '/icons/timer_4.png');
-    document.querySelector('.couner_3').setAttribute('src', '/icons/timer_0.png');
+    document.querySelector('.couner_2').setAttribute('src', 'icons/timer_4.png');
+    document.querySelector('.couner_3').setAttribute('src', 'icons/timer_0.png');
+    blocks = document.querySelectorAll('.block'),
+    isDead = false;
+    refreshIntervalId;
+});
+document.addEventListener('click', (e) => {
+    let target = e.target;
+    if(!isDead){document.querySelector('.smileImg').setAttribute('src', 'icons/smile.png');}
 });
 blocks.forEach(block => {
     block.addEventListener('mousedown', (e)=>{
         if(e.button == 0){
-            document.querySelector('.smileImg').setAttribute('src', '/icons/scared.png');
+            document.querySelector('.smileImg').setAttribute('src', 'icons/scared.png');
         }
     });
-    document.addEventListener('mouseup', (e) => {
-        let target = e.target;
-        document.querySelector('.smileImg').setAttribute('src', '/icons/smile.png');
-    });
+    
     block.addEventListener('mouseup', (e)=>{
         e.stopPropagation()
         let target = e.target;
         console.log(target)
         if(e.button === 0 && !target.classList.contains('flag') && !target.classList.contains('question')){
+            console.log('Прошли')
             if(document.querySelectorAll('.invise-bomb').length === 0){
-                document.querySelector('.smileImg').setAttribute('src', '/icons/smile.png');
+                document.querySelector('.smileImg').setAttribute('src', 'icons/smile.png');
                 firstPoint(block);
                 timer();
             } else if(!isDead) {
                 if(block.classList.contains('invise-bomb')){
                     dead(block);
                 } else {
-                    document.querySelector('.smileImg').setAttribute('src', '/icons/smile.png');
+                    document.querySelector('.smileImg').setAttribute('src', 'icons/smile.png');
                     openBlocks(block);
                 }
             }
@@ -59,14 +64,14 @@ blocks.forEach(block => {
         }
         let units = flagCounter % 10;
         let tens = Math.floor(flagCounter / 10 % 10);
-        document.querySelector('.couner_2').setAttribute('src', '/icons/timer_'+tens+'.png');
-        document.querySelector('.couner_3').setAttribute('src', '/icons/timer_'+units+'.png');
+        document.querySelector('.couner_2').setAttribute('src', 'icons/timer_'+tens+'.png');
+        document.querySelector('.couner_3').setAttribute('src', 'icons/timer_'+units+'.png');
     });
 });
 
 const dead = (block)=>{
     isDead = true;
-    document.querySelector('.smileImg').setAttribute('src', '/icons/dead.png');
+    document.querySelector('.smileImg').setAttribute('src', 'icons/dead.png');
     blocks.forEach(element => {
         if(element.classList.contains('flag') && !element.classList.contains('invise-bomb')){
             element.classList.add('fake-mine')
@@ -318,7 +323,7 @@ const checkWin = () =>{
     let notActiveBlocks = document.querySelectorAll('.not-active').length;
     console.log(`Осталось: ${notActiveBlocks} блоков`)
     if(notActiveBlocks == 0){
-        document.querySelector('.smileImg').setAttribute('src', '/icons/smile-win.png');
+        document.querySelector('.smileImg').setAttribute('src', 'icons/smile-win.png');
         console.log('Вы победили!')
         clearInterval(refreshIntervalId);
     }
@@ -362,14 +367,14 @@ const timer = ()=>{
         let units = time % 10;
         let tens = Math.floor(time / 10 % 10);
         let hundreds = Math.floor(time / 100 % 10);
-        document.querySelector('.timer_1').setAttribute('src', '/icons/timer_'+hundreds+'.png');
-        document.querySelector('.timer_2').setAttribute('src', '/icons/timer_'+tens+'.png');
-        document.querySelector('.timer_3').setAttribute('src', '/icons/timer_'+units+'.png');
+        document.querySelector('.timer_1').setAttribute('src', 'icons/timer_'+hundreds+'.png');
+        document.querySelector('.timer_2').setAttribute('src', 'icons/timer_'+tens+'.png');
+        document.querySelector('.timer_3').setAttribute('src', 'icons/timer_'+units+'.png');
     }, 1000);
 }
 const refreshTimer = ()=>{
     clearInterval(refreshIntervalId);
-    document.querySelector('.timer_1').setAttribute('src', '/icons/timer_0.png');
-    document.querySelector('.timer_2').setAttribute('src', '/icons/timer_0.png');
-    document.querySelector('.timer_3').setAttribute('src', '/icons/timer_0.png');
+    document.querySelector('.timer_1').setAttribute('src', 'icons/timer_0.png');
+    document.querySelector('.timer_2').setAttribute('src', 'icons/timer_0.png');
+    document.querySelector('.timer_3').setAttribute('src', 'icons/timer_0.png');
 }
