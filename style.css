@@ -1,0 +1,104 @@
+.container {
+    width: 534px;
+    height: auto;
+    margin: 0 auto;
+}
+.background-down{
+    background: center/cover no-repeat url(/icons/backgroundDown.png);
+    padding: 9px 18px 17px 17px;
+    z-index: 1;
+    position: relative;
+    height: 500px;
+}
+.background-block {
+    position: absolute;
+}
+.background-up{
+    background: center/cover no-repeat url(/icons/backgroundUp.png);
+    padding: 22px 31px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: -1px;
+    z-index: 2;
+    position: relative;
+}
+.up-block{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: -4px;
+    justify-content: space-between;
+}
+.smile, .counter, .timer{
+    display: flex;
+}
+.smile img{
+    display: flex;
+    height: 52px;
+}
+.timer img, .counter img{
+    display: flex;
+    height: 46px;
+}
+.smileImg{
+    width: 52px;
+    cursor: pointer;
+}
+.block {
+    width: 31.25px;
+    height: 31.25px;
+    background: url('/icons/block.png') center/cover no-repeat;
+    cursor: pointer;
+}
+.block.active {
+    cursor: auto;
+    background: url('/icons/null.png') center/cover no-repeat;
+    outline: 1px solid #7d7d7d;
+}
+.block.flag {
+    background: url('/icons/flag.png') center/cover no-repeat;
+}
+.block.one-bomb, .block.two-bomb, .block.three-bomb, .block.four-bomb, .block.five-bomb, .block.six-bomb, .block.seven-bomb, .block.eight-bomb, .block.dead{
+    cursor: auto;
+}
+.block.one-bomb{
+    background: url('/icons/1.png') center/cover no-repeat;
+}
+.block.two-bomb{
+    background: url('/icons/2.png') center/cover no-repeat;
+}
+.block.three-bomb{
+    background: url('/icons/3.png') center/cover no-repeat;
+}
+.block.four-bomb{
+    background: url('/icons/4.png') center/cover no-repeat;
+}
+.block.five-bomb{
+    background: url('/icons/5.png') center/cover no-repeat;
+}
+.block.six-bomb{
+    background: url('/icons/6.png') center/cover no-repeat;
+}
+.block.seven-bomb{
+    background: url('/icons/7.png') center/cover no-repeat;
+}
+.block.eight-bomb{
+    background: url('/icons/8.png') center/cover no-repeat;
+}
+.block.mine{
+    background: url('/icons/mine.png') center/cover no-repeat;
+}
+.block.fake-mine{
+    background: url('/icons/fake-mine.png') center/cover no-repeat;
+}
+.block.bomb {
+    background: url('/icons/boom.png') center/cover no-repeat;
+}
+.block-line {
+    display: flex;
+}
+.question{
+    background: url('/icons/question.png') center/cover no-repeat;
+}
